@@ -5,7 +5,7 @@ interface ImageItemProps {
   src: string;
   text: string;
   variant: "top" | "left" | "bottom" | "right";
-  onClick: (src: string, title: string) => void;
+  onClick: (src: string, title: string, text: string) => void;
 }
 
 interface StyledProps {
@@ -56,7 +56,7 @@ const Label = styled.h2<StyledProps>`
 
 const ImageItem = ({ label, src, text, variant, onClick }: ImageItemProps) => {
   return (
-    <ImageContainer variant={variant} onClick={() => onClick(src, label)}>
+    <ImageContainer variant={variant} onClick={() => onClick(src, label, text)}>
       {variant === "top" || variant === "left" ? (
         <>
           <Label variant={variant}>{label}</Label>
