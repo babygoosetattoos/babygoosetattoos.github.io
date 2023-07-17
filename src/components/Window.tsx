@@ -199,7 +199,7 @@ const Window = ({ src, title, text, num, onClick }: WindowProps) => {
           </ButtonPseudo>
         </WindowTitle>
         <AccentDivA>
-          <Title>no.{num}</Title>
+          <Title>No.{num}</Title>
           <Title>Ф</Title>
         </AccentDivA>
         <AccentDivB />

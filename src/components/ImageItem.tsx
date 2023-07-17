@@ -6,7 +6,7 @@ interface ImageItemProps {
   src: string;
   text: string;
   num: string;
-  variant: string;
+  variant: "top" | "left" | "bottom" | "right";
   onClick: (src: string, title: string, text: string, num: string) => void;
 }
 
@@ -72,7 +72,11 @@ const ImageItem = ({
   }, [src, label, text, onClick]);
 
   const renderContent = () => {
-    const LabelComponent = <Label variant={variant}>{label}</Label>;
+    const LabelComponent = (
+      <Label variant={variant}>
+        {label} No.{num}
+      </Label>
+    );
     const ImageComponent = <Image src={src} />;
     return isTopOrLeft(variant)
       ? [LabelComponent, ImageComponent]
