@@ -7,6 +7,7 @@ import Booking from "./components/Booking";
 import Tattoos from "./components/Tattoos";
 import Paintings from "./components/Paintings";
 import Video from "./components/Video";
+import Window from "./components/Window";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -25,20 +26,6 @@ const PageContainer = styled.div`
   height: 100vh;
   background-color: #2f2f2f;
   z-index: 0;
-`;
-
-const BackgroundContainer = styled.div`
-  box-sizing: border-box;
-  position: absolute;
-  top: 7vw;
-  left: 5vw;
-  width: 95vw;
-  height: calc(100vh - 7vw);
-  background-color: white;
-  z-index: 1;
-  overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 `;
 
 const NavBar = styled.div`
@@ -86,6 +73,36 @@ const Link = styled.h2`
   }
 `;
 
+const BackgroundContainer = styled.div<{ windowOpen: boolean }>`
+  box-sizing: border-box;
+  position: absolute;
+  top: 7vw;
+  left: 5vw;
+  width: 95vw;
+  height: calc(100vh - 7vw);
+  background-color: white;
+  z-index: 1;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  transition: filter 0.3s ease-in-out;
+  filter: ${(props) => (props.windowOpen ? "blur(8px)" : "none")};
+  pointer-events: ${(props) => (props.windowOpen ? "none" : "auto")};
+`;
+
+const WindowContainer = styled.div<{ windowOpen: boolean }>`
+  position: absolute;
+  z-index: 2;
+  top: 7vw;
+  left: 5vw;
+  width: 95vw;
+  height: calc(100vh - 7vw);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: ${(props) => (props.windowOpen ? "auto" : "none")};
+`;
+
 interface IComponentsMap {
   [key: string]: React.ComponentType<any>;
 }
@@ -101,6 +118,20 @@ const COMPONENTS_MAP: IComponentsMap = {
 
 const App = () => {
   const sections = ["Art", "About", "Booking", "Tattoos", "Paintings", "Video"];
+  const [windowOpen, setWindowOpen] = useState(false);
+  const [activeImage, setActiveImage] = useState<string>("");
+  const [activeTitle, setActiveTitle] = useState<string>("");
+
+  const openComponent = (imageSrc: string, title: string) => {
+    console.log("hello");
+    setWindowOpen(!windowOpen);
+    setActiveImage(imageSrc);
+    setActiveTitle(title);
+  };
+
+  const closeWindow = () => {
+    setWindowOpen(!windowOpen);
+  };
 
   const refs = sections.reduce((acc, curr) => {
     acc[curr] = useRef<HTMLDivElement | null>(null);
@@ -129,11 +160,24 @@ const App = () => {
             ))}
           </LinkContainer>
         </NavBar>
-        <BackgroundContainer>
+        <WindowContainer windowOpen={windowOpen}>
+          {windowOpen && (
+            <Window
+              src={activeImage}
+              title={activeTitle}
+              onClick={closeWindow}
+            />
+          )}
+        </WindowContainer>
+        <BackgroundContainer windowOpen={windowOpen}>
           {sections.map((section) => {
             const Component = COMPONENTS_MAP[section];
             return currentComponent === section ? (
-              <Component key={section} ref={refs[section]} />
+              <Component
+                key={section}
+                ref={refs[section]}
+                onClick={openComponent}
+              />
             ) : null;
           })}
         </BackgroundContainer>
