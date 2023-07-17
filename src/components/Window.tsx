@@ -6,13 +6,53 @@ interface WindowProps {
   src: string;
   title: string;
   text: string;
+  num: string;
   onClick: () => void;
 }
 
 const GlobalStyle = createGlobalStyle`
-    *{
+  *{
         box-sizing: border-box;
-    }
+  }
+
+  /* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #000000 #FFFFFF;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  width: 25px;
+  width: 25px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 0px;
+  background-color: #FFFFFF;
+  border: 1px solid #000000;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #FFFFFF;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #FFFFFF;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: #000000;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #000000;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #000000;
+}
+
 
   @font-face {
     font-family: 'Garamond';
@@ -20,13 +60,13 @@ const GlobalStyle = createGlobalStyle`
   }`;
 
 const WindowDiv = styled.div`
-  posititon: relative;
+  position: relative;
   z-index: 3;
   width: 50%;
   height: 60%;
   background-color: white;
   border: 2px solid black;
-  box-shadow: 11px 10px 0px 0px rgba(0, 0, 0, 1);
+  box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1);
   display: flex;
   flex-direction: column;
 `;
@@ -65,7 +105,7 @@ const Title = styled.h1`
 
 const ButtonPseudo = styled.div`
   position: absolute;
-  right: 5%;
+  right: 1.5vw;
   height: 100%;
   display: flex;
   align-items: center;
@@ -80,9 +120,8 @@ const CloseButton = styled.button`
   aspect-ratio: 1/1;
   background-color: white;
   border: 1px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  align-self: center;
+  margin-right: 5%;
 
   &:hover {
     cursor: pointer;
@@ -101,12 +140,9 @@ const AccentDivA = styled.div`
   border-bottom: 1px solid black;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-`;
-
-const AccentTextHolder = styled.div`
-  position: absolute;
+  padding: 0 1.8vw;
 `;
 
 const AccentDivB = styled.div`
@@ -119,32 +155,37 @@ const AccentDivB = styled.div`
 const WindowContent = styled.div`
   display: flex;
   height: 80%;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0 2vw 0 2vw;
+  padding: 2vh 2vw;
 `;
 
-const Divider = styled.div`
+const ScrollWindow = styled.div`
+  height: 80%;
+  overflow-y: auto;
+  padding: 0 1vw;
+`;
+
+const ImageHolder = styled.div`
   display: flex;
-  width: fit-content;
-  height: 100%;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
+  max-width: 60%;
+  height: 85%;
+  border: 2px solid black;
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
 `;
 
 const Image = styled.img`
   max-width: auto;
-  max-height: 80%;
-  border: 2px solid black;
+  max-height: 100%;
 `;
 
 const Text = styled.h2`
-  margin-left: 2vw;
+  margin: 0 0 0 2vw;
 `;
 
-const Window = ({ src, title, text, onClick }: WindowProps) => {
+const Window = ({ src, title, text, num, onClick }: WindowProps) => {
   return (
     <>
       <GlobalStyle />
@@ -158,22 +199,18 @@ const Window = ({ src, title, text, onClick }: WindowProps) => {
           </ButtonPseudo>
         </WindowTitle>
         <AccentDivA>
-          <AccentTextHolder style={{ left: "1vw" }}>
-            <Title>julia</Title>
-          </AccentTextHolder>
-          <Title style={{ margin: "0 35% 0 35%" }}>Ф</Title>
-          <AccentTextHolder style={{ right: "1vw" }}>
-            <Title>ʕ •ᴥ•ʔ</Title>
-          </AccentTextHolder>
+          <Title>no.{num}</Title>
+          <Title>Ф</Title>
         </AccentDivA>
         <AccentDivB />
         <WindowContent>
-          <Divider>
+          <ImageHolder>
             <Image src={src} />
-          </Divider>
-          <Divider>
+          </ImageHolder>
+
+          <ScrollWindow>
             <Text>{text}</Text>
-          </Divider>
+          </ScrollWindow>
         </WindowContent>
       </WindowDiv>
     </>

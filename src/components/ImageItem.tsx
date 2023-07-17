@@ -1,11 +1,13 @@
+import { useCallback } from "react";
 import styled from "styled-components";
 
 interface ImageItemProps {
   label: string;
   src: string;
   text: string;
-  variant: "top" | "left" | "bottom" | "right";
-  onClick: (src: string, title: string, text: string) => void;
+  num: string;
+  variant: string;
+  onClick: (src: string, title: string, text: string, num: string) => void;
 }
 
 interface StyledProps {
@@ -54,20 +56,32 @@ const Label = styled.h2<StyledProps>`
     `transform: rotate(180deg)`}
 `;
 
-const ImageItem = ({ label, src, text, variant, onClick }: ImageItemProps) => {
+const isTopOrLeft = (variant: string) =>
+  variant === "top" || variant === "left";
+
+const ImageItem = ({
+  label,
+  src,
+  text,
+  num,
+  variant,
+  onClick,
+}: ImageItemProps) => {
+  const handleClick = useCallback(() => {
+    onClick(src, label, text, num);
+  }, [src, label, text, onClick]);
+
+  const renderContent = () => {
+    const LabelComponent = <Label variant={variant}>{label}</Label>;
+    const ImageComponent = <Image src={src} />;
+    return isTopOrLeft(variant)
+      ? [LabelComponent, ImageComponent]
+      : [ImageComponent, LabelComponent];
+  };
+
   return (
-    <ImageContainer variant={variant} onClick={() => onClick(src, label, text)}>
-      {variant === "top" || variant === "left" ? (
-        <>
-          <Label variant={variant}>{label}</Label>
-          <Image src={src} />
-        </>
-      ) : (
-        <>
-          <Image src={src} />
-          <Label variant={variant}>{label}</Label>
-        </>
-      )}
+    <ImageContainer variant={variant} onClick={handleClick}>
+      {renderContent()}
     </ImageContainer>
   );
 };

@@ -1,6 +1,6 @@
 import { createGlobalStyle, styled } from "styled-components";
 import EBGaramond from "./assets/EBGaramond.ttf";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Art from "./components/Art";
 import About from "./components/About";
 import Booking from "./components/Booking";
@@ -85,7 +85,7 @@ const BackgroundContainer = styled.div<{ windowOpen: boolean }>`
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  transition: filter 0.3s ease-in-out;
+  transition: filter 0.2s ease-in-out;
   filter: ${(props) => (props.windowOpen ? "blur(8px)" : "none")};
   pointer-events: ${(props) => (props.windowOpen ? "none" : "auto")};
 `;
@@ -118,35 +118,40 @@ const COMPONENTS_MAP: IComponentsMap = {
 
 const App = () => {
   const sections = ["Art", "About", "Booking", "Tattoos", "Paintings", "Video"];
+  const [currentComponent, setCurrentComponent] = useState("Art");
   const [windowOpen, setWindowOpen] = useState(false);
-  const [activeImage, setActiveImage] = useState<string>("");
-  const [activeTitle, setActiveTitle] = useState<string>("");
-  const [activeText, setActiveText] = useState<string>("");
+  const [activeState, setActiveState] = useState({
+    src: "",
+    title: "",
+    text: "",
+    num: "",
+  });
 
-  const openComponent = (imageSrc: string, title: string, text: string) => {
-    console.log("hello");
-    setWindowOpen(!windowOpen);
-    setActiveImage(imageSrc);
-    setActiveTitle(title);
-    setActiveText(text);
-  };
+  const openComponent = useCallback(
+    (src: string, title: string, text: string, num: string) => {
+      setActiveState({ src, title, text, num });
+      setWindowOpen(true);
+    },
+    []
+  );
 
-  const closeWindow = () => {
+  const closeWindow = useCallback(() => {
     setWindowOpen(!windowOpen);
-  };
+  }, [windowOpen]);
 
   const refs = sections.reduce((acc, curr) => {
     acc[curr] = useRef<HTMLDivElement | null>(null);
     return acc;
   }, {} as Record<string, React.RefObject<HTMLDivElement>>);
 
-  const [currentComponent, setCurrentComponent] = useState("Art");
-
-  const handleScroll = (section: string) => {
-    setCurrentComponent(section);
-    refs[section].current &&
-      refs[section]?.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  const handleScroll = useCallback(
+    (section: string) => {
+      setCurrentComponent(section);
+      refs[section].current &&
+        refs[section]?.current?.scrollIntoView({ behavior: "smooth" });
+    },
+    [refs]
+  );
 
   return (
     <>
@@ -163,18 +168,11 @@ const App = () => {
           </LinkContainer>
         </NavBar>
         <WindowContainer windowOpen={windowOpen}>
-          {windowOpen && (
-            <Window
-              src={activeImage}
-              title={activeTitle}
-              text={activeText}
-              onClick={closeWindow}
-            />
-          )}
+          {windowOpen && <Window {...activeState} onClick={closeWindow} />}
         </WindowContainer>
         <BackgroundContainer windowOpen={windowOpen}>
           {sections.map((section) => {
-            const Component = COMPONENTS_MAP[section];
+            const Component = COMPONENTS_MAP[section ?? "Art"];
             return currentComponent === section ? (
               <Component
                 key={section}
