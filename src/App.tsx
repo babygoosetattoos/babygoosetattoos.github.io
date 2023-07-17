@@ -121,12 +121,14 @@ const App = () => {
   const [windowOpen, setWindowOpen] = useState(false);
   const [activeImage, setActiveImage] = useState<string>("");
   const [activeTitle, setActiveTitle] = useState<string>("");
+  const [activeText, setActiveText] = useState<string>("");
 
-  const openComponent = (imageSrc: string, title: string) => {
+  const openComponent = (imageSrc: string, title: string, text: string) => {
     console.log("hello");
     setWindowOpen(!windowOpen);
     setActiveImage(imageSrc);
     setActiveTitle(title);
+    setActiveText(text);
   };
 
   const closeWindow = () => {
@@ -165,6 +167,7 @@ const App = () => {
             <Window
               src={activeImage}
               title={activeTitle}
+              text={activeText}
               onClick={closeWindow}
             />
           )}

@@ -3,6 +3,7 @@ import styled from "styled-components";
 interface ImageItemProps {
   label: string;
   src: string;
+  text: string;
   variant: "top" | "left" | "bottom" | "right";
   onClick: (src: string, title: string) => void;
 }
@@ -53,7 +54,7 @@ const Label = styled.h2<StyledProps>`
     `transform: rotate(180deg)`}
 `;
 
-const ImageItem = ({ label, src, variant, onClick }: ImageItemProps) => {
+const ImageItem = ({ label, src, text, variant, onClick }: ImageItemProps) => {
   return (
     <ImageContainer variant={variant} onClick={() => onClick(src, label)}>
       {variant === "top" || variant === "left" ? (

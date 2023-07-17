@@ -34,6 +34,7 @@ const WindowTitle = styled.div`
   position: relative;
   width: 100%;
   height: 10%;
+  min-height: 2.25vw;
   border-bottom: 1px solid black;
   display: flex;
   align-items: center;
@@ -47,15 +48,17 @@ const WindowTitle = styled.div`
 const TitlePseudo = styled.div`
   margin: 0;
   height: 100%;
+  display: flex;
   align-items: center;
+  justify-content: center;
   padding: 0 1vw 0 1vw;
   background-color: white;
 `;
 
 const Title = styled.h1`
+  white-space: nowrap;
   margin: 0;
   font-size: 2vw;
-  height: 100%;
   font-weight: bold;
 `;
 
@@ -76,6 +79,9 @@ const CloseButton = styled.button`
   aspect-ratio: 1/1;
   background-color: white;
   border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     cursor: pointer;
@@ -86,7 +92,56 @@ const CloseButton = styled.button`
   }
 `;
 
-const WindowContent = styled.div``;
+const AccentDivA = styled.div`
+  position: relative;
+  width: 100%;
+  height: 10%;
+  min-height: 2.25vw;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const AccentTextHolder = styled.div`
+  position: absolute;
+`;
+
+const AccentDivB = styled.div`
+  width: 100%;
+  height: 1.5%;
+  min-height: 0.15vw;
+  border-bottom: 1px solid black;
+`;
+
+const WindowContent = styled.div`
+  display: flex;
+  height: 80%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2vw 0 2vw;
+`;
+
+const Divider = styled.div`
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  max-width: auto;
+  max-height: 80%;
+  border: 2px solid black;
+`;
+
+const Text = styled.h2`
+  margin-left: 2vw;
+`;
 
 const Window = ({ src, title, onClick }: WindowProps) => {
   return (
@@ -101,7 +156,32 @@ const Window = ({ src, title, onClick }: WindowProps) => {
             <CloseButton onClick={onClick}>X</CloseButton>
           </ButtonPseudo>
         </WindowTitle>
-        <WindowContent></WindowContent>
+        <AccentDivA>
+          <AccentTextHolder style={{ left: "1vw" }}>
+            <Title>julia</Title>
+          </AccentTextHolder>
+          <Title style={{ margin: "0 35% 0 35%" }}>Ф</Title>
+          <AccentTextHolder style={{ right: "1vw" }}>
+            <Title>ʕ •ᴥ•ʔ</Title>
+          </AccentTextHolder>
+        </AccentDivA>
+        <AccentDivB />
+        <WindowContent>
+          <Divider>
+            <Image src={src} />
+          </Divider>
+          <Divider>
+            <Text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </Text>
+          </Divider>
+        </WindowContent>
       </WindowDiv>
     </>
   );
