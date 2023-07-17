@@ -5,6 +5,7 @@ import accentImg from "../assets/accent.png";
 interface WindowProps {
   src: string;
   title: string;
+  text: string;
   onClick: () => void;
 }
 
@@ -143,7 +144,7 @@ const Text = styled.h2`
   margin-left: 2vw;
 `;
 
-const Window = ({ src, title, onClick }: WindowProps) => {
+const Window = ({ src, title, text, onClick }: WindowProps) => {
   return (
     <>
       <GlobalStyle />
@@ -171,15 +172,7 @@ const Window = ({ src, title, onClick }: WindowProps) => {
             <Image src={src} />
           </Divider>
           <Divider>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Text>
+            <Text>{text}</Text>
           </Divider>
         </WindowContent>
       </WindowDiv>
