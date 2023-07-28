@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
 const WindowDiv = styled.div`
   position: relative;
   z-index: 3;
-  width: 50%;
+  width: 60%;
   height: 60%;
   background-color: white;
   border: 2px solid black;
@@ -183,6 +183,7 @@ const Image = styled.img`
 
 const Text = styled.h2`
   margin: 0 0 0 2vw;
+  font-size: 1.6vw;
 `;
 
 const Window = ({ src, title, text, num, onClick }: WindowProps) => {

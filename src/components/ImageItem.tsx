@@ -6,12 +6,8 @@ interface ImageItemProps {
   src: string;
   text: string;
   num: string;
-  variant: "top" | "left" | "bottom" | "right";
+  variant: string;
   onClick: (src: string, title: string, text: string, num: string) => void;
-}
-
-interface StyledProps {
-  variant: "top" | "left" | "bottom" | "right";
 }
 
 const Image = styled.img`
@@ -19,6 +15,10 @@ const Image = styled.img`
   height: auto;
   margin: 0;
 `;
+
+interface StyledProps {
+  variant: string;
+}
 
 const ImageContainer = styled.div<StyledProps>`
   margin: 10px;
