@@ -234,13 +234,13 @@ Error generating stack: `+i.message+`
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
 
   @media (max-width: 480px) {
-    height: 75%;
+    height: 65%;
   }
 `,Jm=H.img`
   max-width: auto;
   max-height: 100%;
 `,Zm=H.h2`
-  margin: 0 0 0 2vw;
+  margin: 10% 5% 0 5%;
   font-size: 1.6vw;
 `,bm=({src:e,title:t,text:n,num:r,onClick:o})=>z.jsxs(z.Fragment,{children:[z.jsx(Um,{}),z.jsxs(Bm,{children:[z.jsxs(Vm,{children:[z.jsx(Hm,{children:z.jsx(Wi,{children:t})}),z.jsx(Wm,{children:z.jsx(Qm,{onClick:o,children:"X"})})]}),z.jsxs(Ym,{children:[z.jsxs(Wi,{children:["No.",r]}),z.jsx(Wi,{children:"Ф"})]}),z.jsx(Gm,{}),z.jsxs(Km,{children:[z.jsx(qm,{children:z.jsx(Jm,{src:e})}),z.jsx(Xm,{children:z.jsx(Zm,{children:n})})]})]})]}),e0=qf`
   @font-face {
