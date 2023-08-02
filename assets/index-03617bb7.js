@@ -140,7 +140,7 @@ Error generating stack: `+i.message+`
 
   @media (max-width: 480px) {
     width: 70%;
-    height: 70%;
+    height: 60%;
   }
 `,Vm=H.div`
   position: relative;
@@ -264,6 +264,10 @@ Error generating stack: `+i.message+`
 `,Zm=H.h2`
   margin: 10% 5% 0 5%;
   font-size: 1.6vw;
+
+  @media (max-width: 480px) {
+    font-size: 2vw;
+  }
 `,bm=({src:e,title:t,text:n,num:r,onClick:o})=>z.jsxs(z.Fragment,{children:[z.jsx(Um,{}),z.jsxs(Bm,{children:[z.jsxs(Vm,{children:[z.jsx(Hm,{children:z.jsx(Wi,{children:t})}),z.jsx(Wm,{children:z.jsx(Qm,{onClick:o,children:"X"})})]}),z.jsxs(Ym,{children:[z.jsxs(Wi,{children:["No.",r]}),z.jsx(Wi,{children:"Ф"})]}),z.jsx(Gm,{}),z.jsxs(Km,{children:[z.jsx(qm,{children:z.jsx(Jm,{src:e})}),z.jsx(Xm,{children:z.jsx(Zm,{children:n})})]})]})]}),e0=qf`
   @font-face {
     font-family: 'Garamond';
