@@ -139,8 +139,8 @@ Error generating stack: `+i.message+`
   flex-direction: column;
 
   @media (max-width: 480px) {
-    width: 80%;
-    height: 60%;
+    width: 70%;
+    height: 70%;
   }
 `,Vm=H.div`
   position: relative;
@@ -157,7 +157,7 @@ Error generating stack: `+i.message+`
   background-position: center;
 
   @media (max-width: 480px) {
-    height: 5%;
+    height: 7.5%;
   }
 `,Hm=H.div`
   margin: 0;
@@ -238,7 +238,7 @@ Error generating stack: `+i.message+`
   padding: 2vh 2vw;
 
   @media (max-width: 480px) {
-    height: 90%;
+    height: 85%;
     flex-direction: column;
   }
 `,Xm=H.div`
