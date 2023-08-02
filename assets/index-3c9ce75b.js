@@ -136,6 +136,7 @@ Error generating stack: `+i.message+`
 
   @media (max-width: 480px) {
     width: 80%;
+    height: 50%;
   }
 `,Vm=H.div`
   position: relative;
