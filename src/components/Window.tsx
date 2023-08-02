@@ -53,7 +53,6 @@ const GlobalStyle = createGlobalStyle`
   background-color: #000000;
 }
 
-
   @font-face {
     font-family: 'Garamond';
     src: url('${Chicago}') format('ttf'),
@@ -69,6 +68,10 @@ const WindowDiv = styled.div`
   box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1);
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 480px) {
+    width: 80%;
+  }
 `;
 
 const WindowTitle = styled.div`

@@ -178,7 +178,7 @@ const App = () => {
       <GlobalStyle />
       <PageContainer>
         <MenuButton onClick={toggleMenu}>
-          <img src="star.png" alt="Menu" />
+          <img src="star.PNG" alt="Menu" />
         </MenuButton>
         <DropdownMenu menuOpen={menuOpen}>
           {sections.map((section) => (
