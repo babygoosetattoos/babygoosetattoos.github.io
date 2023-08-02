@@ -78,9 +78,17 @@ const ImageItem = ({
       </Label>
     );
     const ImageComponent = <Image src={src} />;
-    return isTopOrLeft(variant)
-      ? [LabelComponent, ImageComponent]
-      : [ImageComponent, LabelComponent];
+    return isTopOrLeft(variant) ? (
+      <>
+        {LabelComponent}
+        {ImageComponent}
+      </>
+    ) : (
+      <>
+        {ImageComponent}
+        {LabelComponent}
+      </>
+    );
   };
 
   return (

@@ -28,58 +28,13 @@ const PageContainer = styled.div`
   z-index: 0;
 `;
 
-const NavBar = styled.div`
-  position: absolute;
-  top: 0;
-  left: 5vw;
-  width: 95vw;
-  display: flex;
-  flex-direction: row;
-  padding: 1vw 0 1vw 0;
-`;
-
-const Home = styled.h1`
-  margin: 0;
-  font-weight: 400;
-  font-size: 5vw;
-  text-decoration: none;
-  color: #bba280;
-  user-select: none;
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-`;
-
-const LinkContainer = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: 2.5%;
-  padding-left: 5%;
-  align-items: end;
-`;
-
-const Link = styled.h2`
-  white-space: nowrap;
-  margin: 0;
-  font-weight: 400;
-  font-size: 3vw;
-  text-decoration: none;
-  color: white;
-  user-select: none;
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-`;
-
 const BackgroundContainer = styled.div<{ windowOpen: boolean }>`
   box-sizing: border-box;
   position: absolute;
-  top: 7vw;
-  left: 5vw;
-  width: 95vw;
-  height: calc(100vh - 7vw);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: white;
   z-index: 1;
   overflow-y: auto;
@@ -103,6 +58,62 @@ const WindowContainer = styled.div<{ windowOpen: boolean }>`
   pointer-events: ${(props) => (props.windowOpen ? "auto" : "none")};
 `;
 
+const MenuButton = styled.button`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease-out;
+  z-index: 3;
+  user-select: none;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+`;
+
+const DropdownMenu = styled.div<{ menuOpen: boolean }>`
+  position: fixed;
+  z-index: 3;
+  border: 2px solid black;
+  bottom: 80px;
+  right: 20px;
+  background-color: white;
+  transition: all 0.3s ease-out;
+  opacity: ${(props) => (props.menuOpen ? "1" : "0")};
+  pointer-events: ${(props) => (props.menuOpen ? "auto" : "none")};
+`;
+
+const MenuItem = styled.h2`
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  font-size: 3vw;
+  user-select: none;
+  white-space: nowrap;
+  margin: 0;
+  font-weight: 400;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`;
+
 interface IComponentsMap {
   [key: string]: React.ComponentType<any>;
 }
@@ -120,6 +131,8 @@ const App = () => {
   const sections = ["Art", "About", "Booking", "Tattoos", "Paintings", "Video"];
   const [currentComponent, setCurrentComponent] = useState("Art");
   const [windowOpen, setWindowOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const [activeState, setActiveState] = useState({
     src: "",
     title: "",
@@ -131,6 +144,7 @@ const App = () => {
     (src: string, title: string, text: string, num: string) => {
       setActiveState({ src, title, text, num });
       setWindowOpen(true);
+      setMenuOpen(false);
     },
     []
   );
@@ -138,6 +152,11 @@ const App = () => {
   const closeWindow = useCallback(() => {
     setWindowOpen(!windowOpen);
   }, [windowOpen]);
+
+  const toggleMenu = () => {
+    setWindowOpen(false);
+    setMenuOpen(!menuOpen);
+  };
 
   const refs = sections.reduce((acc, curr) => {
     acc[curr] = useRef<HTMLDivElement | null>(null);
@@ -157,16 +176,16 @@ const App = () => {
     <>
       <GlobalStyle />
       <PageContainer>
-        <NavBar>
-          <Home onClick={() => handleScroll("Art")}>babygoosetattoos</Home>
-          <LinkContainer>
-            {sections.map((section) => (
-              <Link key={section} onClick={() => handleScroll(section)}>
-                {section}
-              </Link>
-            ))}
-          </LinkContainer>
-        </NavBar>
+        <MenuButton onClick={toggleMenu}>
+          <img src="star.png" alt="Menu" />
+        </MenuButton>
+        <DropdownMenu menuOpen={menuOpen}>
+          {sections.map((section) => (
+            <MenuItem key={section} onClick={() => handleScroll(section)}>
+              {section}
+            </MenuItem>
+          ))}
+        </DropdownMenu>
         <WindowContainer windowOpen={windowOpen}>
           {windowOpen && <Window {...activeState} onClick={closeWindow} />}
         </WindowContainer>
