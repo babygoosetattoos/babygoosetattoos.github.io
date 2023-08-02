@@ -120,7 +120,6 @@ Error generating stack: `+i.message+`
   background-color: #000000;
 }
 
-
   @font-face {
     font-family: 'Garamond';
     src: url('${Mm}') format('ttf'),
@@ -134,6 +133,10 @@ Error generating stack: `+i.message+`
   box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1);
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 480px) {
+    width: 80%;
+  }
 `,Vm=H.div`
   position: relative;
   width: 100%;
