@@ -229,8 +229,7 @@ Error generating stack: `+i.message+`
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
 
   @media (max-width: 480px) {
-    width: 30%;
-    height: auto;
+    max-width: 30%;
   }
 `,Jm=H.img`
   max-width: auto;
