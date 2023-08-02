@@ -141,7 +141,6 @@ Error generating stack: `+i.message+`
   @media (max-width: 480px) {
     width: 80%;
     height: 70%;
-    flex-direction: row;
   }
 `,Vm=H.div`
   position: relative;
@@ -217,6 +216,10 @@ Error generating stack: `+i.message+`
   justify-content: center;
   align-items: center;
   padding: 2vh 2vw;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
 `,Xm=H.div`
   height: 80%;
   overflow-y: auto;
