@@ -206,10 +206,6 @@ Error generating stack: `+i.message+`
   &:active {
     border: 3px inset;
   }
-
-  @media (max-width: 480px) {
-    font-size: 1.3vw;
-  }
 `,Ym=H.div`
   position: relative;
   width: 100%;
@@ -334,6 +330,11 @@ Error generating stack: `+i.message+`
   img {
     width: 100%;
     height: auto;
+  }
+
+  @media (max-width: 480px) {
+    bottom: 10px;
+    right: 10px;
   }
 `,i0=H.div`
   position: fixed;
