@@ -181,6 +181,10 @@ Error generating stack: `+i.message+`
   justify-content: center;
   background-color: white;
   padding: 5px;
+
+  @media (max-width: 480px) {
+    padding: 1.5px;
+  }
 `,Qm=H.button`
   height: 95%;
   width: auto;
@@ -191,12 +195,20 @@ Error generating stack: `+i.message+`
   margin-right: 5%;
   color: black;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &:hover {
     cursor: pointer;
   }
 
   &:active {
     border: 3px inset;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.3vw;
   }
 `,Ym=H.div`
   position: relative;
