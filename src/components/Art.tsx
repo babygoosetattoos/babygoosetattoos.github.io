@@ -13,6 +13,10 @@ const ArtContainer = styled.div`
   grid-gap: 10px;
   width: 100%;
   height: fit-content;
+
+  @media (max-width: 480px) {
+    column-count: 3;
+  }
 `;
 
 const IMAGE_ITEMS = [

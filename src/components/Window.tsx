@@ -62,7 +62,7 @@ const WindowDiv = styled.div`
   position: relative;
   z-index: 3;
   width: 60%;
-  height: 60%;
+  height: 75%;
   background-color: white;
   border: 2px solid black;
   box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1);
@@ -70,7 +70,8 @@ const WindowDiv = styled.div`
   flex-direction: column;
 
   @media (max-width: 480px) {
-    width: 80%;
+    width: 70%;
+    height: 60%;
   }
 `;
 
@@ -87,6 +88,10 @@ const WindowTitle = styled.div`
   background-size: 100% 90%;
   background-repeat: no-repeat;
   background-position: center;
+
+  @media (max-width: 480px) {
+    height: 7.5%;
+  }
 `;
 
 const TitlePseudo = styled.div`
@@ -115,6 +120,10 @@ const ButtonPseudo = styled.div`
   justify-content: center;
   background-color: white;
   padding: 5px;
+
+  @media (max-width: 480px) {
+    padding: 1.5px;
+  }
 `;
 
 const CloseButton = styled.button`
@@ -125,6 +134,11 @@ const CloseButton = styled.button`
   border: 1px solid black;
   align-self: center;
   margin-right: 5%;
+  color: black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     cursor: pointer;
@@ -146,6 +160,10 @@ const AccentDivA = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 1.8vw;
+
+  @media (max-width: 480px) {
+    height: 5%;
+  }
 `;
 
 const AccentDivB = styled.div`
@@ -153,6 +171,10 @@ const AccentDivB = styled.div`
   height: 1.5%;
   min-height: 0.15vw;
   border-bottom: 1px solid black;
+
+  @media (max-width: 480px) {
+    height: 0.75%;
+  }
 `;
 
 const WindowContent = styled.div`
@@ -161,6 +183,11 @@ const WindowContent = styled.div`
   justify-content: center;
   align-items: center;
   padding: 2vh 2vw;
+
+  @media (max-width: 480px) {
+    height: 85%;
+    flex-direction: column;
+  }
 `;
 
 const ScrollWindow = styled.div`
@@ -177,6 +204,11 @@ const ImageHolder = styled.div`
   height: 85%;
   border: 2px solid black;
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+
+  @media (max-width: 480px) {
+    max-width: 90%;
+    height: 60%;
+  }
 `;
 
 const Image = styled.img`
@@ -185,8 +217,12 @@ const Image = styled.img`
 `;
 
 const Text = styled.h2`
-  margin: 0 0 0 2vw;
+  margin: 10% 5% 0 5%;
   font-size: 1.6vw;
+
+  @media (max-width: 480px) {
+    font-size: 2vw;
+  }
 `;
 
 const Window = ({ src, title, text, num, onClick }: WindowProps) => {
@@ -211,7 +247,6 @@ const Window = ({ src, title, text, num, onClick }: WindowProps) => {
           <ImageHolder>
             <Image src={src} />
           </ImageHolder>
-
           <ScrollWindow>
             <Text>{text}</Text>
           </ScrollWindow>

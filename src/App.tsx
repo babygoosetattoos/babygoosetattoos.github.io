@@ -48,10 +48,10 @@ const BackgroundContainer = styled.div<{ windowOpen: boolean }>`
 const WindowContainer = styled.div<{ windowOpen: boolean }>`
   position: absolute;
   z-index: 2;
-  top: 7vw;
-  left: 5vw;
-  width: 95vw;
-  height: calc(100vh - 7vw);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,6 +83,11 @@ const MenuButton = styled.button`
   img {
     width: 100%;
     height: auto;
+  }
+
+  @media (max-width: 480px) {
+    bottom: 10px;
+    right: 10px;
   }
 `;
 
