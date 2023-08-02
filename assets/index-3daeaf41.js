@@ -131,7 +131,7 @@ Error generating stack: `+i.message+`
   position: relative;
   z-index: 3;
   width: 60%;
-  height: 60%;
+  height: 75%;
   background-color: white;
   border: 2px solid black;
   box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1);
@@ -271,10 +271,10 @@ Error generating stack: `+i.message+`
 `,r0=H.div`
   position: absolute;
   z-index: 2;
-  top: 7vw;
-  left: 5vw;
-  width: 95vw;
-  height: calc(100vh - 7vw);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
