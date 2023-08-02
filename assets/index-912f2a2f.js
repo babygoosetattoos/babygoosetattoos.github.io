@@ -256,7 +256,7 @@ Error generating stack: `+i.message+`
 
   @media (max-width: 480px) {
     max-width: 90%;
-    height: 65%;
+    height: 60%;
   }
 `,Jm=H.img`
   max-width: auto;
