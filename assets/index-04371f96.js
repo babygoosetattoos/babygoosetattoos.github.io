@@ -185,6 +185,7 @@ Error generating stack: `+i.message+`
   border: 1px solid black;
   align-self: center;
   margin-right: 5%;
+  color: black;
 
   &:hover {
     cursor: pointer;
@@ -229,7 +230,7 @@ Error generating stack: `+i.message+`
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
 
   @media (max-width: 480px) {
-    max-width: 30%;
+    height: 75%;
   }
 `,Jm=H.img`
   max-width: auto;
