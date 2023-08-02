@@ -90,10 +90,11 @@ const DropdownMenu = styled.div<{ menuOpen: boolean }>`
   position: fixed;
   z-index: 3;
   border: 2px solid black;
-  bottom: 80px;
-  right: 20px;
+  bottom: 90px;
+  right: 30px;
   background-color: white;
   transition: all 0.3s ease-out;
+  box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 1);
   opacity: ${(props) => (props.menuOpen ? "1" : "0")};
   pointer-events: ${(props) => (props.menuOpen ? "auto" : "none")};
 `;
